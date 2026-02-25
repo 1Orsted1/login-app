@@ -6,4 +6,13 @@ abstract class LoginEvent with _$LoginEvent {
     required String user,
     required String passw,
   }) = _RequestLogin;
+
+  const factory LoginEvent.checkIfLogged() = _CheckOfLoggedIn;
+  const factory LoginEvent.logOut() = _LogOut;
+  const factory LoginEvent.register({
+    required String user,
+    required String passw,
+  }) = _Register;
+
+  const factory LoginEvent.listenFireUser() = _ListenFireUser;
 }

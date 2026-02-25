@@ -42,11 +42,20 @@ dependencies:
   flutter_bloc: ^9.1.1
   freezed: ^3.2.5
   freezed_annotation: ^3.1.0
+  firebase_core: ^4.4.0
+  firebase_auth: ^6.1.4
+
+  auto_route: ^11.1.0
+  loading_overlay: ^0.5.0
+  equatable: ^2.0.8
+  json_annotation: ^4.10.0
+  json_serializable: ^6.12.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  auto_route: ^11.1.0
+
+  auto_route_generator: ^10.4.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -54,7 +63,6 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
-  auto_route_generator: ^10.4.0
   injectable_generator: ^2.12.0
 
 # For information on the generic Dart part of this file, see the

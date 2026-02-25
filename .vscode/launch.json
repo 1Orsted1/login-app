@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // Launch configuration for Android devices/emulators.
+            "name": "Flutter: Run (Android)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            // Replace the value below with your Android device ID from `flutter devices`.
+            // Leave empty or remove this property to pick the device manually in VS Code.
+            "deviceId": "emulator-5554"
+        },
+        {
+            // Launch configuration for iOS devices/simulators.
+            "name": "Flutter: Run (iOS)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            // Replace the value below with your iOS device/simulator ID from `flutter devices`.
+            // Leave empty or remove this property to pick the device manually in VS Code.
+            "deviceId": "07FF70DE-40B7-4569-AE6C-446081B774D2"
+        }
+    ]
+}
