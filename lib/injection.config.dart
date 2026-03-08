@@ -13,10 +13,12 @@ import 'package:firebase_auth/firebase_auth.dart' as _i59;
 import 'package:firebase_core/firebase_core.dart' as _i982;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
+import 'package:logger/web.dart' as _i120;
 
 import 'application/login_bloc.dart' as _i78;
 import 'domain/i_login_data_source.dart' as _i110;
 import 'domain/i_login_facade.dart' as _i889;
+import 'infra/app_bloc_observer.dart' as _i1014;
 import 'infra/login_data_source.dart' as _i537;
 import 'infra/login_facade.dart' as _i316;
 import 'infra/register_module.dart' as _i761;
@@ -36,6 +38,10 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.singleton<_i59.FirebaseAuth>(() => registerModule.firebaseAuth);
+    gh.singleton<_i120.Logger>(() => registerModule.logger);
+    gh.factory<_i1014.AppBlocObserver>(
+      () => _i1014.AppBlocObserver(gh<_i120.Logger>()),
+    );
     gh.factory<_i110.ILoginDataSource>(
       () => _i537.LoginDataSource(gh<_i59.FirebaseAuth>()),
     );

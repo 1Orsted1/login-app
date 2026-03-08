@@ -21,7 +21,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           password: event.passw,
         );
         emit(state.copyWith(isLoading: false, user: userLogged));
-      } catch (e) {
+      } finally {
         emit(state.copyWith(isLoading: false));
       }
     });
@@ -32,12 +32,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           await emit.forEach(
             facade.checkIfLogged(),
             onData: (user) {
-              print(user);
               return state.copyWith(user: user);
             },
           );
         }
-      } catch (e) {
+      } finally {
         //emit(state.copyWith(isLoading: false));
       }
     });
@@ -54,11 +53,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             }
           },
         );
-      } catch (e) {
-        //emit(state.copyWith(isLoading: false));
-        emit(state.copyWith(authSt: AuthSt.notLogged));
       } finally {
-        emit(state.copyWith(isLoading: false));
+        emit(state.copyWith(authSt: AuthSt.notLogged, isLoading: false));
       }
     });
 
@@ -67,7 +63,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(state.copyWith(isLoading: true));
         await facade.logOut();
         emit(state.copyWith(isLoading: false));
-      } catch (e) {
+      } finally {
         emit(state.copyWith(isLoading: false));
       }
     });
@@ -80,7 +76,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           password: event.passw,
         );
         emit(state.copyWith(isLoading: false, user: userLogged));
-      } catch (e) {
+      } finally {
         emit(state.copyWith(isLoading: false));
       }
     });
