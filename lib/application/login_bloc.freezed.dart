@@ -55,7 +55,7 @@ extension LoginEventPatterns on LoginEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _RequestLogin value)?  requestLogin,TResult Function( _CheckOfLoggedIn value)?  checkIfLogged,TResult Function( _LogOut value)?  logOut,TResult Function( _Register value)?  register,TResult Function( _ListenFireUser value)?  listenFireUser,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _RequestLogin value)?  requestLogin,TResult Function( _CheckOfLoggedIn value)?  checkIfLogged,TResult Function( _LogOut value)?  logOut,TResult Function( _Register value)?  register,TResult Function( _ListenFireUser value)?  listenFireUser,TResult Function( _ErrorEvent value)?  errorEvent,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _RequestLogin() when requestLogin != null:
@@ -63,7 +63,8 @@ return requestLogin(_that);case _CheckOfLoggedIn() when checkIfLogged != null:
 return checkIfLogged(_that);case _LogOut() when logOut != null:
 return logOut(_that);case _Register() when register != null:
 return register(_that);case _ListenFireUser() when listenFireUser != null:
-return listenFireUser(_that);case _:
+return listenFireUser(_that);case _ErrorEvent() when errorEvent != null:
+return errorEvent(_that);case _:
   return orElse();
 
 }
@@ -81,7 +82,7 @@ return listenFireUser(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _RequestLogin value)  requestLogin,required TResult Function( _CheckOfLoggedIn value)  checkIfLogged,required TResult Function( _LogOut value)  logOut,required TResult Function( _Register value)  register,required TResult Function( _ListenFireUser value)  listenFireUser,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _RequestLogin value)  requestLogin,required TResult Function( _CheckOfLoggedIn value)  checkIfLogged,required TResult Function( _LogOut value)  logOut,required TResult Function( _Register value)  register,required TResult Function( _ListenFireUser value)  listenFireUser,required TResult Function( _ErrorEvent value)  errorEvent,}){
 final _that = this;
 switch (_that) {
 case _RequestLogin():
@@ -89,7 +90,8 @@ return requestLogin(_that);case _CheckOfLoggedIn():
 return checkIfLogged(_that);case _LogOut():
 return logOut(_that);case _Register():
 return register(_that);case _ListenFireUser():
-return listenFireUser(_that);case _:
+return listenFireUser(_that);case _ErrorEvent():
+return errorEvent(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -106,7 +108,7 @@ return listenFireUser(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _RequestLogin value)?  requestLogin,TResult? Function( _CheckOfLoggedIn value)?  checkIfLogged,TResult? Function( _LogOut value)?  logOut,TResult? Function( _Register value)?  register,TResult? Function( _ListenFireUser value)?  listenFireUser,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _RequestLogin value)?  requestLogin,TResult? Function( _CheckOfLoggedIn value)?  checkIfLogged,TResult? Function( _LogOut value)?  logOut,TResult? Function( _Register value)?  register,TResult? Function( _ListenFireUser value)?  listenFireUser,TResult? Function( _ErrorEvent value)?  errorEvent,}){
 final _that = this;
 switch (_that) {
 case _RequestLogin() when requestLogin != null:
@@ -114,7 +116,8 @@ return requestLogin(_that);case _CheckOfLoggedIn() when checkIfLogged != null:
 return checkIfLogged(_that);case _LogOut() when logOut != null:
 return logOut(_that);case _Register() when register != null:
 return register(_that);case _ListenFireUser() when listenFireUser != null:
-return listenFireUser(_that);case _:
+return listenFireUser(_that);case _ErrorEvent() when errorEvent != null:
+return errorEvent(_that);case _:
   return null;
 
 }
@@ -131,14 +134,15 @@ return listenFireUser(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String user,  String passw)?  requestLogin,TResult Function()?  checkIfLogged,TResult Function()?  logOut,TResult Function( String user,  String passw)?  register,TResult Function()?  listenFireUser,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String user,  String passw)?  requestLogin,TResult Function()?  checkIfLogged,TResult Function()?  logOut,TResult Function( String user,  String passw)?  register,TResult Function()?  listenFireUser,TResult Function( String error)?  errorEvent,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _RequestLogin() when requestLogin != null:
 return requestLogin(_that.user,_that.passw);case _CheckOfLoggedIn() when checkIfLogged != null:
 return checkIfLogged();case _LogOut() when logOut != null:
 return logOut();case _Register() when register != null:
 return register(_that.user,_that.passw);case _ListenFireUser() when listenFireUser != null:
-return listenFireUser();case _:
+return listenFireUser();case _ErrorEvent() when errorEvent != null:
+return errorEvent(_that.error);case _:
   return orElse();
 
 }
@@ -156,14 +160,15 @@ return listenFireUser();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String user,  String passw)  requestLogin,required TResult Function()  checkIfLogged,required TResult Function()  logOut,required TResult Function( String user,  String passw)  register,required TResult Function()  listenFireUser,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String user,  String passw)  requestLogin,required TResult Function()  checkIfLogged,required TResult Function()  logOut,required TResult Function( String user,  String passw)  register,required TResult Function()  listenFireUser,required TResult Function( String error)  errorEvent,}) {final _that = this;
 switch (_that) {
 case _RequestLogin():
 return requestLogin(_that.user,_that.passw);case _CheckOfLoggedIn():
 return checkIfLogged();case _LogOut():
 return logOut();case _Register():
 return register(_that.user,_that.passw);case _ListenFireUser():
-return listenFireUser();case _:
+return listenFireUser();case _ErrorEvent():
+return errorEvent(_that.error);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -180,14 +185,15 @@ return listenFireUser();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String user,  String passw)?  requestLogin,TResult? Function()?  checkIfLogged,TResult? Function()?  logOut,TResult? Function( String user,  String passw)?  register,TResult? Function()?  listenFireUser,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String user,  String passw)?  requestLogin,TResult? Function()?  checkIfLogged,TResult? Function()?  logOut,TResult? Function( String user,  String passw)?  register,TResult? Function()?  listenFireUser,TResult? Function( String error)?  errorEvent,}) {final _that = this;
 switch (_that) {
 case _RequestLogin() when requestLogin != null:
 return requestLogin(_that.user,_that.passw);case _CheckOfLoggedIn() when checkIfLogged != null:
 return checkIfLogged();case _LogOut() when logOut != null:
 return logOut();case _Register() when register != null:
 return register(_that.user,_that.passw);case _ListenFireUser() when listenFireUser != null:
-return listenFireUser();case _:
+return listenFireUser();case _ErrorEvent() when errorEvent != null:
+return errorEvent(_that.error);case _:
   return null;
 
 }
@@ -428,9 +434,75 @@ String toString() {
 
 
 /// @nodoc
+
+
+class _ErrorEvent implements LoginEvent {
+  const _ErrorEvent({required this.error});
+  
+
+ final  String error;
+
+/// Create a copy of LoginEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ErrorEventCopyWith<_ErrorEvent> get copyWith => __$ErrorEventCopyWithImpl<_ErrorEvent>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ErrorEvent&&(identical(other.error, error) || other.error == error));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,error);
+
+@override
+String toString() {
+  return 'LoginEvent.errorEvent(error: $error)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ErrorEventCopyWith<$Res> implements $LoginEventCopyWith<$Res> {
+  factory _$ErrorEventCopyWith(_ErrorEvent value, $Res Function(_ErrorEvent) _then) = __$ErrorEventCopyWithImpl;
+@useResult
+$Res call({
+ String error
+});
+
+
+
+
+}
+/// @nodoc
+class __$ErrorEventCopyWithImpl<$Res>
+    implements _$ErrorEventCopyWith<$Res> {
+  __$ErrorEventCopyWithImpl(this._self, this._then);
+
+  final _ErrorEvent _self;
+  final $Res Function(_ErrorEvent) _then;
+
+/// Create a copy of LoginEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
+  return _then(_ErrorEvent(
+error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
 mixin _$LoginState {
 
- bool get isLoading; bool get isLoggedIn; AuthSt get authSt; User? get user;
+ bool get isLoading; bool get isLoggedIn; AuthSt get authSt; String? get errorMsg; User? get user;
 /// Create a copy of LoginState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -441,16 +513,16 @@ $LoginStateCopyWith<LoginState> get copyWith => _$LoginStateCopyWithImpl<LoginSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isLoggedIn, isLoggedIn) || other.isLoggedIn == isLoggedIn)&&(identical(other.authSt, authSt) || other.authSt == authSt)&&(identical(other.user, user) || other.user == user));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isLoggedIn, isLoggedIn) || other.isLoggedIn == isLoggedIn)&&(identical(other.authSt, authSt) || other.authSt == authSt)&&(identical(other.errorMsg, errorMsg) || other.errorMsg == errorMsg)&&(identical(other.user, user) || other.user == user));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,isLoggedIn,authSt,user);
+int get hashCode => Object.hash(runtimeType,isLoading,isLoggedIn,authSt,errorMsg,user);
 
 @override
 String toString() {
-  return 'LoginState(isLoading: $isLoading, isLoggedIn: $isLoggedIn, authSt: $authSt, user: $user)';
+  return 'LoginState(isLoading: $isLoading, isLoggedIn: $isLoggedIn, authSt: $authSt, errorMsg: $errorMsg, user: $user)';
 }
 
 
@@ -461,7 +533,7 @@ abstract mixin class $LoginStateCopyWith<$Res>  {
   factory $LoginStateCopyWith(LoginState value, $Res Function(LoginState) _then) = _$LoginStateCopyWithImpl;
 @useResult
 $Res call({
- bool isLoading, bool isLoggedIn, AuthSt authSt, User? user
+ bool isLoading, bool isLoggedIn, AuthSt authSt, String? errorMsg, User? user
 });
 
 
@@ -478,12 +550,13 @@ class _$LoginStateCopyWithImpl<$Res>
 
 /// Create a copy of LoginState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? isLoggedIn = null,Object? authSt = null,Object? user = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? isLoggedIn = null,Object? authSt = null,Object? errorMsg = freezed,Object? user = freezed,}) {
   return _then(_self.copyWith(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,isLoggedIn: null == isLoggedIn ? _self.isLoggedIn : isLoggedIn // ignore: cast_nullable_to_non_nullable
 as bool,authSt: null == authSt ? _self.authSt : authSt // ignore: cast_nullable_to_non_nullable
-as AuthSt,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as AuthSt,errorMsg: freezed == errorMsg ? _self.errorMsg : errorMsg // ignore: cast_nullable_to_non_nullable
+as String?,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
 as User?,
   ));
 }
@@ -569,10 +642,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  bool isLoggedIn,  AuthSt authSt,  User? user)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  bool isLoggedIn,  AuthSt authSt,  String? errorMsg,  User? user)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _$Initial() when $default != null:
-return $default(_that.isLoading,_that.isLoggedIn,_that.authSt,_that.user);case _:
+return $default(_that.isLoading,_that.isLoggedIn,_that.authSt,_that.errorMsg,_that.user);case _:
   return orElse();
 
 }
@@ -590,10 +663,10 @@ return $default(_that.isLoading,_that.isLoggedIn,_that.authSt,_that.user);case _
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  bool isLoggedIn,  AuthSt authSt,  User? user)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  bool isLoggedIn,  AuthSt authSt,  String? errorMsg,  User? user)  $default,) {final _that = this;
 switch (_that) {
 case _$Initial():
-return $default(_that.isLoading,_that.isLoggedIn,_that.authSt,_that.user);case _:
+return $default(_that.isLoading,_that.isLoggedIn,_that.authSt,_that.errorMsg,_that.user);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -610,10 +683,10 @@ return $default(_that.isLoading,_that.isLoggedIn,_that.authSt,_that.user);case _
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  bool isLoggedIn,  AuthSt authSt,  User? user)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  bool isLoggedIn,  AuthSt authSt,  String? errorMsg,  User? user)?  $default,) {final _that = this;
 switch (_that) {
 case _$Initial() when $default != null:
-return $default(_that.isLoading,_that.isLoggedIn,_that.authSt,_that.user);case _:
+return $default(_that.isLoading,_that.isLoggedIn,_that.authSt,_that.errorMsg,_that.user);case _:
   return null;
 
 }
@@ -625,12 +698,13 @@ return $default(_that.isLoading,_that.isLoggedIn,_that.authSt,_that.user);case _
 
 
 class _$Initial implements LoginState {
-  const _$Initial({required this.isLoading, required this.isLoggedIn, required this.authSt, this.user});
+  const _$Initial({required this.isLoading, required this.isLoggedIn, required this.authSt, this.errorMsg, this.user});
   
 
 @override final  bool isLoading;
 @override final  bool isLoggedIn;
 @override final  AuthSt authSt;
+@override final  String? errorMsg;
 @override final  User? user;
 
 /// Create a copy of LoginState
@@ -643,16 +717,16 @@ _$$InitialCopyWith<_$Initial> get copyWith => __$$InitialCopyWithImpl<_$Initial>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _$Initial&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isLoggedIn, isLoggedIn) || other.isLoggedIn == isLoggedIn)&&(identical(other.authSt, authSt) || other.authSt == authSt)&&(identical(other.user, user) || other.user == user));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _$Initial&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isLoggedIn, isLoggedIn) || other.isLoggedIn == isLoggedIn)&&(identical(other.authSt, authSt) || other.authSt == authSt)&&(identical(other.errorMsg, errorMsg) || other.errorMsg == errorMsg)&&(identical(other.user, user) || other.user == user));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,isLoggedIn,authSt,user);
+int get hashCode => Object.hash(runtimeType,isLoading,isLoggedIn,authSt,errorMsg,user);
 
 @override
 String toString() {
-  return 'LoginState(isLoading: $isLoading, isLoggedIn: $isLoggedIn, authSt: $authSt, user: $user)';
+  return 'LoginState(isLoading: $isLoading, isLoggedIn: $isLoggedIn, authSt: $authSt, errorMsg: $errorMsg, user: $user)';
 }
 
 
@@ -663,7 +737,7 @@ abstract mixin class _$$InitialCopyWith<$Res> implements $LoginStateCopyWith<$Re
   factory _$$InitialCopyWith(_$Initial value, $Res Function(_$Initial) _then) = __$$InitialCopyWithImpl;
 @override @useResult
 $Res call({
- bool isLoading, bool isLoggedIn, AuthSt authSt, User? user
+ bool isLoading, bool isLoggedIn, AuthSt authSt, String? errorMsg, User? user
 });
 
 
@@ -680,12 +754,13 @@ class __$$InitialCopyWithImpl<$Res>
 
 /// Create a copy of LoginState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? isLoggedIn = null,Object? authSt = null,Object? user = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? isLoggedIn = null,Object? authSt = null,Object? errorMsg = freezed,Object? user = freezed,}) {
   return _then(_$Initial(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,isLoggedIn: null == isLoggedIn ? _self.isLoggedIn : isLoggedIn // ignore: cast_nullable_to_non_nullable
 as bool,authSt: null == authSt ? _self.authSt : authSt // ignore: cast_nullable_to_non_nullable
-as AuthSt,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as AuthSt,errorMsg: freezed == errorMsg ? _self.errorMsg : errorMsg // ignore: cast_nullable_to_non_nullable
+as String?,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
 as User?,
   ));
 }

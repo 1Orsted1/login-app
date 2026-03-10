@@ -15,18 +15,20 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc(ILoginFacade facade) : super(LoginState.initial()) {
     on<_RequestLogin>((event, emit) async {
       try {
-        emit(state.copyWith(isLoading: true));
+        emit(state.copyWith(isLoading: true, errorMsg: null));
         final userLogged = await facade.requestLogin(
           user: event.user,
           password: event.passw,
         );
         emit(state.copyWith(isLoading: false, user: userLogged));
-      } finally {
-        emit(state.copyWith(isLoading: false));
+      } catch (e) {
+        addError(e);
+        emit(state.copyWith(errorMsg: e.toString(), isLoading: false));
       }
     });
 
     on<_CheckOfLoggedIn>((event, emit) async {
+      emit(state.copyWith(errorMsg: null));
       try {
         if (state.user != null) {
           await emit.forEach(
@@ -36,13 +38,17 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             },
           );
         }
+      } catch (e) {
+        addError(e);
+        emit(state.copyWith(errorMsg: e.toString()));
       } finally {
-        //emit(state.copyWith(isLoading: false));
+        emit(state.copyWith(isLoading: false));
       }
     });
 
     on<_ListenFireUser>((event, emit) async {
       try {
+        emit(state.copyWith(errorMsg: null));
         await emit.forEach(
           facade.checkIfLogged(),
           onData: (user) {
@@ -53,6 +59,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             }
           },
         );
+      } catch (e) {
+        addError(e);
+        emit(state.copyWith(errorMsg: e.toString()));
       } finally {
         emit(state.copyWith(authSt: AuthSt.notLogged, isLoading: false));
       }
@@ -60,9 +69,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     on<_LogOut>((event, emit) async {
       try {
-        emit(state.copyWith(isLoading: true));
+        emit(state.copyWith(isLoading: true, errorMsg: null));
         await facade.logOut();
         emit(state.copyWith(isLoading: false));
+      } catch (e) {
+        addError(e);
+        emit(state.copyWith(errorMsg: e.toString()));
       } finally {
         emit(state.copyWith(isLoading: false));
       }
@@ -70,12 +82,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     on<_Register>((event, emit) async {
       try {
-        emit(state.copyWith(isLoading: true));
+        emit(state.copyWith(isLoading: true, errorMsg: null));
         final userLogged = await facade.register(
           user: event.user,
           password: event.passw,
         );
         emit(state.copyWith(isLoading: false, user: userLogged));
+      } catch (e) {
+        addError(e);
+        emit(state.copyWith(errorMsg: e.toString()));
       } finally {
         emit(state.copyWith(isLoading: false));
       }

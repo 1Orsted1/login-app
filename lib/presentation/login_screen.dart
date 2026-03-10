@@ -1,9 +1,11 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_login/application/login_bloc.dart';
 import 'package:my_login/presentation/core/app_router.gr.dart';
+import 'package:my_login/presentation/widgets/error_bar.dart';
 
 @RoutePage()
 class LoginScreen extends StatefulWidget {
@@ -21,6 +23,15 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _obscurePassword = true;
   late final LoginBloc bloc;
 
+  bool validate(LoginState p, LoginState c) {
+    if (p.errorMsg == null && c.errorMsg != null) {
+      //show snackbar or whateber
+      return true;
+    } else {
+      return p.user == null && c.user != null;
+    }
+  }
+
   @override
   void initState() {
     bloc = context.read<LoginBloc>();
@@ -31,11 +42,15 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return BlocListener<LoginBloc, LoginState>(
-      listenWhen: (p, c) => p.user == null && c.user != null,
+      listenWhen: validate,
       listener: (context, state) {
-        widget.onResult != null
-            ? widget.onResult!(true)
-            : context.router.replace(HomeRoute());
+        if (state.errorMsg != null) {
+          ErrorBar(context: context);
+        } else {
+          widget.onResult != null
+              ? widget.onResult!(true)
+              : context.router.replace(HomeRoute());
+        }
       },
       child: Scaffold(
         body: SafeArea(

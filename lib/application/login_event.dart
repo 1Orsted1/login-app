@@ -15,4 +15,6 @@ abstract class LoginEvent with _$LoginEvent {
   }) = _Register;
 
   const factory LoginEvent.listenFireUser() = _ListenFireUser;
+
+  const factory LoginEvent.errorEvent({required String error}) = _ErrorEvent;
 }
