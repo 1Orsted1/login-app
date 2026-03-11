@@ -1,57 +1,27 @@
-import 'package:flutter/material.dart';
 import 'package:another_flushbar/flushbar.dart';
+import 'package:flutter/material.dart';
 
-class ErrorBar {
-  const ErrorBar({required this.context});
-
-  final BuildContext context;
-  Future<void> showErrorBar() async {
-    await Flushbar(
-      title: "Hey Ninja",
-      titleColor: Colors.white,
-      message:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
-      flushbarPosition: FlushbarPosition.TOP,
-      flushbarStyle: FlushbarStyle.FLOATING,
-      reverseAnimationCurve: Curves.decelerate,
-      forwardAnimationCurve: Curves.elasticOut,
-      backgroundColor: Colors.red,
-      boxShadows: [
-        BoxShadow(
-          color: Colors.blue[800] ?? Colors.transparent,
-          offset: Offset(0.0, 2.0),
-          blurRadius: 3.0,
-        ),
-      ],
-      backgroundGradient: LinearGradient(
-        colors: [Colors.blueGrey, Colors.black],
+void showErrorBar(BuildContext context, String message) {
+  Flushbar(
+    flushbarPosition: FlushbarPosition.TOP,
+    flushbarStyle: FlushbarStyle.FLOATING,
+    backgroundColor: Colors.red[700]!,
+    margin: const EdgeInsets.all(12),
+    borderRadius: BorderRadius.circular(8),
+    icon: const Icon(Icons.error_outline, color: Colors.white),
+    titleText: const Text(
+      'Error',
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 16,
+        color: Colors.white,
       ),
-      isDismissible: false,
-      duration: Duration(seconds: 4),
-      icon: Icon(Icons.check, color: Colors.greenAccent),
-      mainButton: TextButton(
-        onPressed: () {},
-        child: Text("CLAP", style: TextStyle(color: Colors.amber)),
-      ),
-      showProgressIndicator: true,
-      progressIndicatorBackgroundColor: Colors.blueGrey,
-      titleText: Text(
-        "Hello Hero",
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 20.0,
-          color: Colors.yellow[600],
-          fontFamily: "ShadowsIntoLightTwo",
-        ),
-      ),
-      messageText: Text(
-        "You killed that giant monster in the city. Congratulations!",
-        style: TextStyle(
-          fontSize: 18.0,
-          color: Colors.green,
-          fontFamily: "ShadowsIntoLightTwo",
-        ),
-      ),
-    ).show(context);
-  }
+    ),
+    messageText: Text(
+      message,
+      style: const TextStyle(fontSize: 14, color: Colors.white70),
+    ),
+    isDismissible: true,
+    duration: const Duration(seconds: 4),
+  ).show(context);
 }

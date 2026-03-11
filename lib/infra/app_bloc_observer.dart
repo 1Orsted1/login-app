@@ -13,15 +13,15 @@ class AppBlocObserver extends BlocObserver {
     Transition<dynamic, dynamic> transition,
   ) {
     super.onTransition(bloc, transition);
-    l.t(
-      "Transition from:\n${transition.currentState.toString()}\nto\n${transition.nextState.toString()}",
-    );
+    // l.t(
+    //   "Transition from:\n${transition.currentState.toString()}\nto\n${transition.nextState.toString()}",
+    // );
   }
 
   @override
   void onEvent(Bloc<dynamic, dynamic> bloc, Object? event) {
     super.onEvent(bloc, event);
-    l.t("Bloc Event: ${event.toString()}");
+    l.t("Bloc Event: ${event.runtimeType.toString()}");
   }
 
   @override

@@ -22,8 +22,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         );
         emit(state.copyWith(isLoading: false, user: userLogged));
       } catch (e) {
-        addError(e);
-        emit(state.copyWith(errorMsg: e.toString(), isLoading: false));
+        String error = e.toString();
+        if (e is FirebaseException) {
+          final message = RegExp(r'\[.*?\]\s*(.+)').firstMatch(e.toString());
+          error = message?.group(1) ?? "Ocurrio un error desconocido";
+        }
+        addError(error);
+        emit(state.copyWith(errorMsg: error, isLoading: false));
       }
     });
 

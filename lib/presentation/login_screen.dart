@@ -1,4 +1,3 @@
-import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
       listenWhen: validate,
       listener: (context, state) {
         if (state.errorMsg != null) {
-          ErrorBar(context: context);
+          showErrorBar(context, state.errorMsg!);
         } else {
           widget.onResult != null
               ? widget.onResult!(true)
