@@ -32,25 +32,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       }
     });
 
-    on<_CheckOfLoggedIn>((event, emit) async {
-      emit(state.copyWith(errorMsg: null));
-      try {
-        if (state.user != null) {
-          await emit.forEach(
-            facade.checkIfLogged(),
-            onData: (user) {
-              return state.copyWith(user: user);
-            },
-          );
-        }
-      } catch (e) {
-        addError(e);
-        emit(state.copyWith(errorMsg: e.toString()));
-      } finally {
-        emit(state.copyWith(isLoading: false));
-      }
-    });
-
     on<_ListenFireUser>((event, emit) async {
       try {
         emit(state.copyWith(errorMsg: null));
@@ -65,10 +46,18 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           },
         );
       } catch (e) {
-        addError(e);
-        emit(state.copyWith(errorMsg: e.toString()));
-      } finally {
-        emit(state.copyWith(authSt: AuthSt.notLogged, isLoading: false));
+        String error = e.toString();
+        if (e is FirebaseException) {
+          final message = RegExp(r'\[.*?\]\s*(.+)').firstMatch(e.toString());
+          error = message?.group(1) ?? "Ocurrio un error desconocido";
+        }
+        emit(
+          state.copyWith(
+            authSt: AuthSt.notLogged,
+            isLoading: false,
+            errorMsg: error,
+          ),
+        );
       }
     });
 
@@ -77,22 +66,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(state.copyWith(isLoading: true, errorMsg: null));
         await facade.logOut();
         emit(state.copyWith(isLoading: false));
-      } catch (e) {
-        addError(e);
-        emit(state.copyWith(errorMsg: e.toString()));
-      } finally {
-        emit(state.copyWith(isLoading: false));
-      }
-    });
-
-    on<_Register>((event, emit) async {
-      try {
-        emit(state.copyWith(isLoading: true, errorMsg: null));
-        final userLogged = await facade.register(
-          user: event.user,
-          password: event.passw,
-        );
-        emit(state.copyWith(isLoading: false, user: userLogged));
       } catch (e) {
         addError(e);
         emit(state.copyWith(errorMsg: e.toString()));

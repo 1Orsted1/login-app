@@ -22,9 +22,4 @@ class LoginFacade implements ILoginFacade {
   Future<void> logOut() {
     return _source.logOut();
   }
-
-  @override
-  Future<User?> register({required String user, required String password}) {
-    return _source.register(user: user, password: password);
-  }
 }

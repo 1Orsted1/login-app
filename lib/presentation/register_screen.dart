@@ -2,7 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_login/application/login_bloc.dart';
+import 'package:my_login/application/auth/login_bloc.dart';
+import 'package:my_login/application/registration/registration_bloc.dart';
 
 @RoutePage()
 class RegisterScreen extends StatefulWidget {
@@ -17,11 +18,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String? usr;
   String? psw;
   bool _obscurePassword = true;
-  late final LoginBloc bloc;
+  late final RegistrationBloc bloc;
 
   @override
   void initState() {
-    bloc = context.read<LoginBloc>();
+    bloc = context.read<RegistrationBloc>();
     super.initState();
   }
 
@@ -111,7 +112,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     print('usr: $usr pswd: $psw');
                                   }
                                   bloc.add(
-                                    LoginEvent.register(
+                                    RegistrationEvent.registerUser(
                                       user: usr!,
                                       passw: psw!,
                                     ),

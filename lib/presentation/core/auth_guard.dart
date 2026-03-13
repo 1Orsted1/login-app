@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:injectable/injectable.dart';
-import 'package:my_login/application/login_bloc.dart';
+import 'package:my_login/application/auth/login_bloc.dart';
 import 'package:my_login/infra/auth_st.dart';
 import 'package:my_login/presentation/core/app_router.gr.dart';
 

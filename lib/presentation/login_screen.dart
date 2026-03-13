@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_login/application/login_bloc.dart';
+import 'package:my_login/application/auth/login_bloc.dart';
 import 'package:my_login/presentation/core/app_router.gr.dart';
 import 'package:my_login/presentation/widgets/error_bar.dart';
 

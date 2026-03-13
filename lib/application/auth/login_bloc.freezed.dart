@@ -55,12 +55,11 @@ extension LoginEventPatterns on LoginEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _RequestLogin value)?  requestLogin,TResult Function( _CheckOfLoggedIn value)?  checkIfLogged,TResult Function( _LogOut value)?  logOut,TResult Function( _Register value)?  register,TResult Function( _ListenFireUser value)?  listenFireUser,TResult Function( _ErrorEvent value)?  errorEvent,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _RequestLogin value)?  requestLogin,TResult Function( _LogOut value)?  logOut,TResult Function( _Register value)?  register,TResult Function( _ListenFireUser value)?  listenFireUser,TResult Function( _ErrorEvent value)?  errorEvent,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _RequestLogin() when requestLogin != null:
-return requestLogin(_that);case _CheckOfLoggedIn() when checkIfLogged != null:
-return checkIfLogged(_that);case _LogOut() when logOut != null:
+return requestLogin(_that);case _LogOut() when logOut != null:
 return logOut(_that);case _Register() when register != null:
 return register(_that);case _ListenFireUser() when listenFireUser != null:
 return listenFireUser(_that);case _ErrorEvent() when errorEvent != null:
@@ -82,12 +81,11 @@ return errorEvent(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _RequestLogin value)  requestLogin,required TResult Function( _CheckOfLoggedIn value)  checkIfLogged,required TResult Function( _LogOut value)  logOut,required TResult Function( _Register value)  register,required TResult Function( _ListenFireUser value)  listenFireUser,required TResult Function( _ErrorEvent value)  errorEvent,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _RequestLogin value)  requestLogin,required TResult Function( _LogOut value)  logOut,required TResult Function( _Register value)  register,required TResult Function( _ListenFireUser value)  listenFireUser,required TResult Function( _ErrorEvent value)  errorEvent,}){
 final _that = this;
 switch (_that) {
 case _RequestLogin():
-return requestLogin(_that);case _CheckOfLoggedIn():
-return checkIfLogged(_that);case _LogOut():
+return requestLogin(_that);case _LogOut():
 return logOut(_that);case _Register():
 return register(_that);case _ListenFireUser():
 return listenFireUser(_that);case _ErrorEvent():
@@ -108,12 +106,11 @@ return errorEvent(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _RequestLogin value)?  requestLogin,TResult? Function( _CheckOfLoggedIn value)?  checkIfLogged,TResult? Function( _LogOut value)?  logOut,TResult? Function( _Register value)?  register,TResult? Function( _ListenFireUser value)?  listenFireUser,TResult? Function( _ErrorEvent value)?  errorEvent,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _RequestLogin value)?  requestLogin,TResult? Function( _LogOut value)?  logOut,TResult? Function( _Register value)?  register,TResult? Function( _ListenFireUser value)?  listenFireUser,TResult? Function( _ErrorEvent value)?  errorEvent,}){
 final _that = this;
 switch (_that) {
 case _RequestLogin() when requestLogin != null:
-return requestLogin(_that);case _CheckOfLoggedIn() when checkIfLogged != null:
-return checkIfLogged(_that);case _LogOut() when logOut != null:
+return requestLogin(_that);case _LogOut() when logOut != null:
 return logOut(_that);case _Register() when register != null:
 return register(_that);case _ListenFireUser() when listenFireUser != null:
 return listenFireUser(_that);case _ErrorEvent() when errorEvent != null:
@@ -134,11 +131,10 @@ return errorEvent(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String user,  String passw)?  requestLogin,TResult Function()?  checkIfLogged,TResult Function()?  logOut,TResult Function( String user,  String passw)?  register,TResult Function()?  listenFireUser,TResult Function( String error)?  errorEvent,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String user,  String passw)?  requestLogin,TResult Function()?  logOut,TResult Function( String user,  String passw)?  register,TResult Function()?  listenFireUser,TResult Function( String error)?  errorEvent,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _RequestLogin() when requestLogin != null:
-return requestLogin(_that.user,_that.passw);case _CheckOfLoggedIn() when checkIfLogged != null:
-return checkIfLogged();case _LogOut() when logOut != null:
+return requestLogin(_that.user,_that.passw);case _LogOut() when logOut != null:
 return logOut();case _Register() when register != null:
 return register(_that.user,_that.passw);case _ListenFireUser() when listenFireUser != null:
 return listenFireUser();case _ErrorEvent() when errorEvent != null:
@@ -160,11 +156,10 @@ return errorEvent(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String user,  String passw)  requestLogin,required TResult Function()  checkIfLogged,required TResult Function()  logOut,required TResult Function( String user,  String passw)  register,required TResult Function()  listenFireUser,required TResult Function( String error)  errorEvent,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String user,  String passw)  requestLogin,required TResult Function()  logOut,required TResult Function( String user,  String passw)  register,required TResult Function()  listenFireUser,required TResult Function( String error)  errorEvent,}) {final _that = this;
 switch (_that) {
 case _RequestLogin():
-return requestLogin(_that.user,_that.passw);case _CheckOfLoggedIn():
-return checkIfLogged();case _LogOut():
+return requestLogin(_that.user,_that.passw);case _LogOut():
 return logOut();case _Register():
 return register(_that.user,_that.passw);case _ListenFireUser():
 return listenFireUser();case _ErrorEvent():
@@ -185,11 +180,10 @@ return errorEvent(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String user,  String passw)?  requestLogin,TResult? Function()?  checkIfLogged,TResult? Function()?  logOut,TResult? Function( String user,  String passw)?  register,TResult? Function()?  listenFireUser,TResult? Function( String error)?  errorEvent,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String user,  String passw)?  requestLogin,TResult? Function()?  logOut,TResult? Function( String user,  String passw)?  register,TResult? Function()?  listenFireUser,TResult? Function( String error)?  errorEvent,}) {final _that = this;
 switch (_that) {
 case _RequestLogin() when requestLogin != null:
-return requestLogin(_that.user,_that.passw);case _CheckOfLoggedIn() when checkIfLogged != null:
-return checkIfLogged();case _LogOut() when logOut != null:
+return requestLogin(_that.user,_that.passw);case _LogOut() when logOut != null:
 return logOut();case _Register() when register != null:
 return register(_that.user,_that.passw);case _ListenFireUser() when listenFireUser != null:
 return listenFireUser();case _ErrorEvent() when errorEvent != null:
@@ -268,38 +262,6 @@ as String,
 
 
 }
-
-/// @nodoc
-
-
-class _CheckOfLoggedIn implements LoginEvent {
-  const _CheckOfLoggedIn();
-  
-
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CheckOfLoggedIn);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'LoginEvent.checkIfLogged()';
-}
-
-
-}
-
-
-
 
 /// @nodoc
 

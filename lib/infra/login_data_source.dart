@@ -16,7 +16,6 @@ class LoginDataSource implements ILoginDataSource {
       email: user,
       password: password,
     );
-    print(res.user);
     return res.user;
   }
 
@@ -28,17 +27,5 @@ class LoginDataSource implements ILoginDataSource {
   @override
   Future<void> logOut() async {
     return _firebaseAuth.signOut();
-  }
-
-  @override
-  Future<User?> register({
-    required String user,
-    required String password,
-  }) async {
-    final res = await _firebaseAuth.createUserWithEmailAndPassword(
-      email: user,
-      password: password,
-    );
-    return res.user;
   }
 }

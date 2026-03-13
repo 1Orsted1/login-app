@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_login/application/login_bloc.dart';
+import 'package:my_login/application/auth/login_bloc.dart';
+import 'package:my_login/application/registration/registration_bloc.dart';
 import 'package:my_login/injection.dart';
 import 'package:my_login/presentation/core/app_router.dart';
 
@@ -16,7 +17,10 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => getIt<LoginBloc>())],
+      providers: [
+        BlocProvider(create: (context) => getIt<LoginBloc>()),
+        BlocProvider(create: (context) => getIt<RegistrationBloc>()),
+      ],
       child: MaterialApp.router(
         routerConfig: _appRouter.config(),
         title: 'Flutter Demo',
